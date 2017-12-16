@@ -1,6 +1,6 @@
 {
   "name": "next-chunk",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Asynchronously returns the next chunk in a Node.js readable stream",
   "author": "Gustaf Räntilä",
   "license": "MIT",
