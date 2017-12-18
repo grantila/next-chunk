@@ -33,6 +33,7 @@
     "@types/node": "8.x",
     "@types/through2": "2.x",
     "chai": "4.x",
+    "coveralls": "2.x",
     "get-stream": "3.x",
     "istanbul": "1.1.0-alpha.1",
     "mocha": "4.x",
