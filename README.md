@@ -36,11 +36,11 @@ const endedChunk = await nextChunk( readable );
 const againChunk = await nextChunk( readable );
 
 // These chunks contain buffers or strings
-expext( firstChunk ).to.not.be.null;
-expext( secondChunk ).to.not.be.null;
+expect( firstChunk ).to.not.be.null;
+expect( secondChunk ).to.not.be.null;
 // These are all null
-expext( endedChunk ).to.be.null;
-expext( againChunk ).to.be.null;
+expect( endedChunk ).to.be.null;
+expect( againChunk ).to.be.null;
 ```
 
 [npm-image]: https://img.shields.io/npm/v/next-chunk.svg
