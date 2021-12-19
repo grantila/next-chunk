@@ -26,14 +26,6 @@ If importing using TypeScript or ES6 modules:
 import nextChunk from 'next-chunk'
 ```
 
-and if importing using CommonJS `require`:
-
-```js
-const { nextChunk } = require( 'next-chunk' );
-// or, if preferred
-const nextChunk = require( 'next-chunk' ).default;
-```
-
 ## Usage
 
 ```ts
