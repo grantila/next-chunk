@@ -23,7 +23,7 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.prod.json",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "buildtest": "npm run build && npm run test",
     "cz": "git-cz"
   },
