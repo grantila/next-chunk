@@ -45,6 +45,8 @@ expect( endedChunk ).to.be.null;
 expect( againChunk ).to.be.null;
 ```
 
+[npm-image]: https://img.shields.io/npm/v/next-chunk.svg
+[npm-url]: https://npmjs.org/package/next-chunk
 [downloads-image]: https://img.shields.io/npm/dm/next-chunk.svg
 [build-image]: https://img.shields.io/github/workflow/status/grantila/next-chunk/Master.svg
 [build-url]: https://github.com/grantila/next-chunk/actions?query=workflow%3AMaster
