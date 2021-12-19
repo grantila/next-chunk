@@ -1,5 +1,3 @@
-'use strict'
-
 export function nextChunk( stream: NodeJS.ReadableStream )
 : Promise< Buffer | string >
 {

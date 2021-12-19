@@ -1,9 +1,0 @@
-before_script:
-  - npm run build
-language: node_js
-node_js:
-  - "7"
-  - "8"
-  - "9"
-after_script:
-  - "test -e ./coverage/lcov.info && cat ./coverage/lcov.info | node_modules/.bin/coveralls"

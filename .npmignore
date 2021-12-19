@@ -1,6 +1,0 @@
-coverage/
-node_modules/
-test
-.npmignore
-.travis.yml
-tsconfig*.json

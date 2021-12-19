@@ -8,13 +8,24 @@
     "url": "https://github.com/grantila/next-chunk/issues"
   },
   "homepage": "https://github.com/grantila/next-chunk#readme",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "directories": {},
+  "type": "module",
+  "main": "./index.ts",
+  "exports": "./index.ts",
+  "types": "./index.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "main": "./dist/index.js",
+    "exports": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
   "scripts": {
-    "build": "./node_modules/.bin/rimraf dist && ./node_modules/.bin/tsc -p .",
-    "test": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --bail --check-leaks -- dist/test",
-    "buildtest": "npm run build && npm run test"
+    "build": "rimraf dist && tsc -p tsconfig.prod.json",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "buildtest": "npm run build && npm run test",
+    "cz": "git-cz"
   },
   "repository": {
     "type": "git",
@@ -27,18 +38,35 @@
     "readable",
     "promise"
   ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "devDependencies": {
-    "@types/get-stream": "3.x",
-    "@types/mocha": "2.x",
-    "@types/node": "8.x",
-    "@types/through2": "2.x",
-    "chai": "4.x",
-    "coveralls": "2.x",
-    "get-stream": "3.x",
-    "istanbul": "1.1.0-alpha.1",
-    "mocha": "4.x",
-    "rimraf": "2.x",
-    "through2": "2.x",
-    "typescript": "2.6.x"
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-typescript": "^7.16.5",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^17.0.0",
+    "@types/through2": "^2.0.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "get-stream": "6.0.1",
+    "jest": "^27.4.5",
+    "rimraf": "^3.0.2",
+    "through2": "^4.0.2",
+    "ts-jest-resolver": "^2.0.0",
+    "typescript": "^4.5.4"
+  },
+  "jest": {
+    "resolver": "ts-jest-resolver",
+    "testEnvironment": "node",
+    "coverageReporters": [
+      "lcov",
+      "text",
+      "html"
+    ],
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ]
   }
 }

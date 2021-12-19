@@ -1,6 +1,4 @@
-'use strict'
-
-import { nextChunk } from './lib'
+import { nextChunk } from './lib/index.js'
 
 export default nextChunk
 export { nextChunk }

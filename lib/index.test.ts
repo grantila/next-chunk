@@ -1,17 +1,17 @@
-'use strict'
-
-import 'mocha'
-import { expect } from 'chai'
-
-import nextChunk from '../../'
+import nextChunk, { nextChunk as nextChunkExported } from '../index.js'
 
 import { Readable } from 'stream'
-import * as through2 from 'through2'
+import through2 from 'through2'
 import { buffer as getStreamAsBuffer } from 'get-stream'
 
 
 describe( 'default', ( ) =>
 {
+	it( 'should export default and named', ( ) =>
+	{
+		expect( nextChunk ).toBe( nextChunkExported );
+	} );
+
 	it( 'should get null on already ended stream', async ( ) =>
 	{
 		const stream = through2( );
@@ -20,7 +20,7 @@ describe( 'default', ( ) =>
 
 		const data = await nextChunk( stream );
 
-		expect( data ).to.be.null;
+		expect( data ).toBeNull( );
 	} );
 
 	it( 'should get only chunk on stream ended with data', async ( ) =>
@@ -32,8 +32,8 @@ describe( 'default', ( ) =>
 		const data1 = await nextChunk( stream );
 		const data2 = await nextChunk( stream );
 
-		expect( data1.toString( ) ).to.equal( 'data' );
-		expect( data2 ).to.be.null;
+		expect( data1.toString( ) ).toBe( 'data' );
+		expect( data2 ).toBeNull( );
 	} );
 
 	it( 'should get two chunks', async ( ) =>
@@ -49,9 +49,9 @@ describe( 'default', ( ) =>
 		stream.end( );
 		const data3 = await nextChunk( stream );
 
-		expect( data1.toString( ) ).to.equal( 'foo' );
-		expect( data2.toString( ) ).to.equal( 'bar' );
-		expect( data3 ).to.be.null;
+		expect( data1.toString( ) ).toBe( 'foo' );
+		expect( data2.toString( ) ).toBe( 'bar' );
+		expect( data3 ).toBeNull( );
 	} );
 
 	it( 'should get two async chunks', async ( ) =>
@@ -67,9 +67,9 @@ describe( 'default', ( ) =>
 		setTimeout( ( ) => stream.end( ), 50 );
 		const data3 = await nextChunk( stream );
 
-		expect( data1.toString( ) ).to.equal( 'foo' );
-		expect( data2.toString( ) ).to.equal( 'bar' );
-		expect( data3 ).to.be.null;
+		expect( data1.toString( ) ).toBe( 'foo' );
+		expect( data2.toString( ) ).toBe( 'bar' );
+		expect( data3 ).toBeNull( );
 	} );
 
 	it( 'should handle destroyed stream', async ( ) =>
@@ -82,8 +82,8 @@ describe( 'default', ( ) =>
 		stream.destroy( );
 		const data2 = await nextChunk( stream );
 
-		expect( data1.toString( ) ).to.equal( 'foo' );
-		expect( data2 ).to.be.null;
+		expect( data1.toString( ) ).toBe( 'foo' );
+		expect( data2 ).toBeNull( );
 	} );
 
 	it( 'should handle error in reading', async ( ) =>
@@ -110,12 +110,12 @@ describe( 'default', ( ) =>
 		{
 			await nextChunk( stream );
 
-			expect( false ).to.be.true;
+			expect( false ).toBe( true );
 		}
 		catch ( err )
 		{
-			expect( data1.toString( ) ).to.equal( 'foo' );
-			expect( err ).to.equal( testError );
+			expect( data1.toString( ) ).toBe( 'foo' );
+			expect( err ).toBe( testError );
 		}
 	} );
 
@@ -132,12 +132,12 @@ describe( 'default', ( ) =>
 		{
 			await asyncData2;
 
-			expect( false ).to.be.true;
+			expect( false ).toBe( true );
 		}
 		catch ( err )
 		{
-			expect( data1.toString( ) ).to.equal( 'foo' );
-			expect( err.message ).to.equal( 'bar' );
+			expect( data1.toString( ) ).toBe( 'foo' );
+			expect( err.message ).toBe( 'bar' );
 		}
 	} );
 
@@ -147,11 +147,11 @@ describe( 'default', ( ) =>
 		{
 			await nextChunk( null );
 
-			expect( false ).to.be.true;
+			expect( false ).toBe( true );
 		}
 		catch ( err )
 		{
-			expect( err.message ).to.contain( 'Not a' );
+			expect( err.message ).toContain( 'Not a' );
 		}
 	} );
 
@@ -169,7 +169,7 @@ describe( 'default', ( ) =>
 
 		const data2 = await getStreamAsBuffer( stream2 );
 
-		expect( data1.toString( ) ).to.equal( 'foo' );
-		expect( data2.toString( ) ).to.equal( 'bar' );
+		expect( data1.toString( ) ).toBe( 'foo' );
+		expect( data2.toString( ) ).toBe( 'bar' );
 	} );
 } );
